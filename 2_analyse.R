@@ -15,7 +15,7 @@ p <- p + theme_minimal() + theme(axis.text.x = element_blank(), axis.ticks = ele
                                  panel.grid = element_blank() , legend.position = "none",
                                  text = element_text(size = 8))
 p
-ggsave("plots/IDD_overall_byCountry.png", width = 150, height = 75, units = "mm", dpi = 300)
+ggsave("plots/IDD_overall_byCountry.pdf", width = 150, height = 75, units = "mm", dpi = 300)
 
 # Advertisements by country and occupational level
 df.plot <- df %>% 
@@ -29,11 +29,12 @@ p <- p + geom_bar(stat = "identity")
 #p <- p + geom_text(aes(x=Country, y=CountryCount, label = factor(Country)), angle = 90, hjust = -0.1, vjust = 0.25, size = 3)
 p <- p + scale_y_continuous("Number of Job Advertisments")
 p <- p + scale_x_discrete("Country")
-p <- p + theme_minimal() + theme(axis.text.x = element_blank(), axis.ticks = element_blank(),
-                                 panel.grid = element_blank() , #legend.position = "none",
-                                 text = element_text(size = 8))
+p <- p + theme_minimal() 
+#p <- p + theme(axis.text.x = element_blank(), axis.ticks = element_blank(),
+#                                 panel.grid = element_blank() , #legend.position = "none",
+#                                 text = element_text(size = 8))
 p
-ggsave("IDD_overall_byCountry.png", width = 150, height = 75, units = "mm", dpi = 300)
+ggsave("plots/IDD_overall_byCountry_byLevel.pdf", width = 150, height = 75, units = "mm", dpi = 300)
 
 df.plot <- df %>% group_by(Country, LEVEL) %>% mutate(CountryCount = n()) %>% ungroup() %>%
   group_by(LEVEL) %>%
